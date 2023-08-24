@@ -1,13 +1,12 @@
 import express  from "express";
+import authRouter from './routes/auth.routes.js'
 
 const app = express();
 
 app.use(express.json());
 
-
-app.get('/', (req, res) => {
-  res.send('hola mundo')
-})
+// routes
+app.use('/api/auth', authRouter);
 
 
 

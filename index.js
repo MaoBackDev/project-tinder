@@ -7,7 +7,7 @@ const port = 3000 || process.env.PORT;
 
 (async () => {
   try {
-    await sequelize.sync( {alter: true} );
+    await sequelize.sync( {force: false} );
     app.listen(port, () => console.log(`server run on port ${port}`));
   } catch (error) {
     console.error('Unable to connect to the database:', error);
