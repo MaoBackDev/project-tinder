@@ -5,8 +5,8 @@ import serviceRouter from './routes/service.routes.js'
 import companyRouter from './routes/company.routes.js'
 
 const app = express();
-
 app.use(express.json());
+app.use(express.static('public'));
 
 // routes
 app.use('/api/auth', authRouter);
