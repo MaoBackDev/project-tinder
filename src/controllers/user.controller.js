@@ -38,6 +38,11 @@ export const getUserById = async (req, res) => {
       },
       attributes: {
         exclude: ['password', 'status', 'createdAt', 'updatedAt']
+      },
+      include: {
+        model: Skill,
+        attributes: ['name'],
+        through: { attributes: [] }
       }
     });
 

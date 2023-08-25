@@ -1,0 +1,12 @@
+import { Router } from "express";
+import { addUserService, createService, getServicesByCompany, getServicesByUser } from "../controllers/service.controller.js";
+
+const router = Router();
+
+router.post('/:id', createService)
+router.post('/add/:user_id/service/:service_id', addUserService);
+router.get('/company/:id', getServicesByCompany);
+router.get('/user/:id', getServicesByUser);
+
+
+export default router;
