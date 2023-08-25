@@ -1,6 +1,8 @@
-import { User, Skill } from "../database/connectionDB.js"
+import { User, Skill } from "../database/connectionDB.js";
+import { Op } from "sequelize"; 
 
 export const getUsers = async (req, res) => {
+  const { skill } = req.query;
   try {
     const users = await User.findAll({
       where: {
@@ -12,7 +14,12 @@ export const getUsers = async (req, res) => {
       include: {
         model: Skill,
         attributes: ['name'],
-        through: { attributes: [] }
+        through: { attributes: [] },
+        where: {
+          name: {
+            [Op.substring]: `${skill}`
+          }
+        }
       }
     });
     res.status(200).json({

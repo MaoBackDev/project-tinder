@@ -44,6 +44,7 @@ export const registerCompany = async (req, res) => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
+    
     const company = await Company.findOne({
       where: { email }
     })

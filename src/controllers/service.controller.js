@@ -65,9 +65,6 @@ export const getServicesByUser = async (req, res) => {
 }
 
 
-
-
-
 export const addUserService = async (req, res) => {
 
   const service_id = Number(req.params.service_id);
@@ -98,5 +95,26 @@ export const addUserService = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ message: error.message })
+  }
+}
+
+export const updateService = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const service = await Service.findByPk(id);
+    if(!service) return res.status(404).json({
+      message: 'Servicio no encontrado'
+    })
+
+    service.set(req.body)
+    await service.save();
+
+    res.status(200).json({
+      ok: true,
+      message: 'El servicio ha sido actualizado'
+    })
+  } catch (error) {
+    res.status(500).json({message: error.massage})
   }
 }

@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { addUserService, createService, getServicesByCompany, getServicesByUser } from "../controllers/service.controller.js";
+import { addUserService, createService, getServicesByCompany, getServicesByUser, updateService } from "../controllers/service.controller.js";
 
 const router = Router();
 
-router.post('/:id', createService)
+router.post('/:id', createService);
+router.put('/update/:id', updateService);
 router.post('/add/:user_id/service/:service_id', addUserService);
 router.get('/company/:id', getServicesByCompany);
 router.get('/user/:id', getServicesByUser);
